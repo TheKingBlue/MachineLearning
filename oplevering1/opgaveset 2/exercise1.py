@@ -46,7 +46,7 @@ print ("Deze waarde zou rond de 32.07 moeten liggen")
 
 input ("Druk op return om verder te gaan...");
 
-# ========================  OPGAVE 3 ========================
+# ========================  OPGAVE 3A ========================
 print ("\nOpgave 3a: gradient_descent")
 alpha = 0.01
 num_iters = 1500
@@ -58,11 +58,11 @@ print (f"De kost met deze waarde van theta is {compute_cost(X, y, theta.T)}")
 print ("Die zou zo rond de 4.48 moeten liggen.")
 input ("Druk op return om verder te gaan...")
 
-# ========================  OPGAVE 4 ========================
+# ========================  OPGAVE 3B ========================
 print ("\nOpgave 3b: draw_costs")
 draw_costs(costs)
 input ("Druk op return om verder te gaan...")
 
-# ========================  OPGAVE 5 ========================
+# ========================  OPGAVE 4 ========================
 print ("\nOpgave 4: contour plot")
 contour_plot(X, y)

@@ -20,9 +20,11 @@ def draw_graph(data):
     # Maak gebruik van pytplot.scatter om dit voor elkaar te krijgen.
 
     #YOUR CODE HERE
-    pass
-
-
+    x, y = np.transpose(data)
+    plt.scatter(x, y)
+    plt.xlabel('Populatie')
+    plt.ylabel('Winst')
+    plt.show()
 
 def compute_cost(X, y, theta):
     #OPGAVE 2
@@ -46,11 +48,14 @@ def compute_cost(X, y, theta):
 
     J = 0
 
-    # YOUR CODE HERE
+    m = len(X)
+    h = np.matmul(X, theta)
+    dif = np.subtract(h, y)
+    kwadraat = np.square(dif)
+    sum = np.sum(kwadraat)
+    J = sum / (2 * m)
 
     return J
-
-
 
 def gradient_descent(X, y, theta, alpha, num_iters):
     #OPGAVE 3a
@@ -69,22 +74,28 @@ def gradient_descent(X, y, theta, alpha, num_iters):
     #   3. vermenigvuldig dit verschil met de i-de waarde van X
     #   4. update de i-de parameter van theta, namelijk door deze te verminderen met
     #      alpha keer het gemiddelde van de som van de vermenigvuldiging uit 3
-
+    
+    # aan het eind van deze loop retourneren we de nieuwe waarde van theta
+    # (wat is de dimensionaliteit van theta op dit moment?)
+    
     m,n = X.shape
     costs = []
 
-    # YOUR CODE HERE
-
-    # aan het eind van deze loop retourneren we de nieuwe waarde van theta
-    # (wat is de dimensionaliteit van theta op dit moment?)
-
+    for i in range(num_iters) :
+        h = np.matmul(X, theta.T)
+        dif = np.subtract(h, y)
+        mul = np.dot(dif.T, X)
+        theta -= alpha * (1/m * mul)
+        costs.append(compute_cost(X, y, theta.T))
+    
     return theta, costs
-
 
 def draw_costs(data): 
     # OPGAVE 3b
-    # YOUR CODE HERE
-    pass
+    plt.plot(data)
+    plt.xlabel('Iteraties')
+    plt.ylabel('J')
+    plt.show()
 
 def contour_plot(X, y):
     #OPGAVE 4
@@ -106,7 +117,10 @@ def contour_plot(X, y):
 
     J_vals = np.zeros( (len(t2), len(t2)) )
 
-    #YOUR CODE HERE 
+    for i in range(len(t1)):
+        for j in range(len(t2)):
+            theta = np.array([t1[i], t2[j]])
+            J_vals[i,j] = compute_cost(X, y, theta)
 
     surf = ax.plot_surface(T1, T2, J_vals, rstride=1, cstride=1, cmap=cm.coolwarm, linewidth=0, antialiased=False)
 
