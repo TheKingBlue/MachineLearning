@@ -48,7 +48,7 @@ def compute_cost(X, y, theta):
 
     J = 0
 
-    m = len(X)
+    m = len(X) # X.shape
     h = np.matmul(X, theta)
     dif = np.subtract(h, y)
     kwadraat = np.square(dif)
@@ -81,7 +81,7 @@ def gradient_descent(X, y, theta, alpha, num_iters):
     m,n = X.shape
     costs = []
 
-    for i in range(num_iters) :
+    for _ in range(num_iters) :
         h = np.matmul(X, theta.T)
         dif = np.subtract(h, y)
         mul = np.dot(dif.T, X)
@@ -94,7 +94,7 @@ def draw_costs(data):
     # OPGAVE 3b
     plt.plot(data)
     plt.xlabel('Iteraties')
-    plt.ylabel('J')
+    plt.ylabel(r'J($\theta$)')
     plt.show()
 
 def contour_plot(X, y):
