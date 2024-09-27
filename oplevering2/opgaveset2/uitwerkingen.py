@@ -36,8 +36,8 @@ def get_y_matrix(y, m):
 
     rows = [i for i in range(m)]
     data = [1 for _ in range(m)]
-    width = max(y) + 1 # arrays zijn zero-based
-    y_vec = csr_matrix((data, (rows, y)), shape=(len(rows), width+1)).toarray()
+    width = int(max(y))
+    y_vec = csr_matrix((data, (rows, y)), shape=(m, width)).toarray()
     return y_vec
 
 # ==== OPGAVE 2c ==== 
