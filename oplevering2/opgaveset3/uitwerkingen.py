@@ -10,8 +10,9 @@ def plot_image(img, label):
     # Maak gebruik van plt.cm.binary voor de cmap-parameter van plt.imgshow.
 
     # YOUR CODE HERE
-
-    pass
+    plt.imshow(img, cmap=plt.cm.binary)
+    plt.xlabel(label)
+    plt.show()
 
 
 # OPGAVE 1b
@@ -22,8 +23,8 @@ def scale_data(X):
     # Deel alle elementen in de matrix 'element wise' door de grootste waarde in deze matrix.
 
     # YOUR CODE HERE
-
-    pass
+    max =  np.amax(X)
+    return np.divide(X, max)    
 
 # OPGAVE 1c
 def build_model():
@@ -37,8 +38,8 @@ def build_model():
 
     # Het staat je natuurlijk vrij om met andere settings en architecturen te experimenteren.
 
-    model = None
-
+    model = []
+    
     # YOUR CODE HERE
 
     return model

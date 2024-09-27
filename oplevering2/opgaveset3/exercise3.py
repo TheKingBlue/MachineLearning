@@ -71,6 +71,8 @@ print (r)
 train_images = scale_data(train_images)
 test_images = scale_data(test_images)
 
+print(train_images.shape)
+
 input ("Druk op enter om verder te gaan...")
 
 
