@@ -10,7 +10,9 @@ def plot_number(nrVector):
     # gespiegeld en geroteerd. Zie de documentatie op 
     # https://docs.scipy.org/doc/numpy/reference/generated/numpy.reshape.html
 
-    pass
+    reshaped = np.reshape(nrVector, (20,20), order='F')
+    plt.matshow(reshaped)
+    plt.show()
 
 # ==== OPGAVE 2a ====
 def sigmoid(z):
@@ -19,8 +21,8 @@ def sigmoid(z):
     # vector is.
     # Maak gebruik van de methode exp() in NumPy.
 
-    pass
-
+    e = np.exp(-z)
+    return np.divide(1, (1+e))
 
 # ==== OPGAVE 2b ====
 def get_y_matrix(y, m):
@@ -32,8 +34,11 @@ def get_y_matrix(y, m):
     # In dit geval is de breedte van de matrix 10 (0-9),
     # maar de methode moet werken voor elke waarde van y en m
 
-    #YOUR CODE HERE
-    pass
+    rows = [i for i in range(m)]
+    data = [1 for _ in range(m)]
+    width = max(y) + 1 # arrays zijn zero-based
+    y_vec = csr_matrix((data, (rows, y)), shape=(len(rows), width+1)).toarray()
+    return y_vec
 
 # ==== OPGAVE 2c ==== 
 # ===== deel 1: =====
