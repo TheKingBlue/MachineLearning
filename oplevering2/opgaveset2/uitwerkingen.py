@@ -34,11 +34,18 @@ def get_y_matrix(y, m):
     # In dit geval is de breedte van de matrix 10 (0-9),
     # maar de methode moet werken voor elke waarde van y en m
 
+    # -1 to all to make the matrix 0 based
+    y_zerobase = y-1
+    # Transpose to go from 5000x1 to 1x5000 (A normal 1D array)
+    # (Het lijkt alsof hij in de les de data niet in de jusite vorm pakte)
+    cols = y_zerobase.T[0] #[0] to get rid of the array-in-array style
+    print(cols, y_zerobase.T)
     rows = [i for i in range(m)]
     data = [1 for _ in range(m)]
-    width = int(max(y))
-    y_vec = csr_matrix((data, (rows, y)), shape=(m, width)).toarray()
-    return y_vec
+    # convert to int, then +1 to width because it is 0 based
+    width = int(max(y_zerobase))+1
+    y_matrix = csr_matrix((data, (rows, cols)), shape=(m, width)).toarray()
+    return y_matrix
 
 # ==== OPGAVE 2c ==== 
 # ===== deel 1: =====
