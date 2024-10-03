@@ -60,46 +60,46 @@ num_labels = 10;          # 10 labels, 1 tot en met 10
                           # let op: '0' wordt opgeslagen als label 10.
 
 
-# ========================  OPGAVE 1 ======================== 
-rnd = randint(0, X.shape[0])
-print (f"Tekenen van data op regel {rnd}")
-if (len(sys.argv)>1 and sys.argv[1]=='skip') :
-    print ("Slaan we over")
-else:
-    hyp = y[rnd]
-    if (hyp==10): hyp=0
-    print (f"Dit zou een {hyp} moeten zijn.")
-    plot_number(X[rnd,:])
+# # ========================  OPGAVE 1 ======================== 
+# rnd = randint(0, X.shape[0])
+# print (f"Tekenen van data op regel {rnd}")
+# if (len(sys.argv)>1 and sys.argv[1]=='skip') :
+#     print ("Slaan we over")
+# else:
+#     hyp = y[rnd]
+#     if (hyp==10): hyp=0
+#     print (f"Dit zou een {hyp} moeten zijn.")
+#     plot_number(X[rnd,:])
 
-input ("Druk op Return om verder te gaan...") 
+# input ("Druk op Return om verder te gaan...") 
 
 
-# ========================  OPGAVE 2a ======================== 
-print ("")
-print ("Sigmoid-functie met een relatief groot negatief getal zou bijna 0 moeten zijn")
-print (f"Sigmoid van -10 = {sigmoid(-10)}")
+# # ========================  OPGAVE 2a ======================== 
+# print ("")
+# print ("Sigmoid-functie met een relatief groot negatief getal zou bijna 0 moeten zijn")
+# print (f"Sigmoid van -10 = {sigmoid(-10)}")
 
-print ("Sigmoid-functie van 0 zou 0,5 moeten zijn.")
-print (f"Sigmoid van 0 = {sigmoid(0)}")
+# print ("Sigmoid-functie van 0 zou 0,5 moeten zijn.")
+# print (f"Sigmoid van 0 = {sigmoid(0)}")
 
-print ("Sigmoid-functie met een relatief groot positief getal zou bijna 1 moeten zijn")
-print (f"Sigmoid van 10 = {sigmoid(10)}")
+# print ("Sigmoid-functie met een relatief groot positief getal zou bijna 1 moeten zijn")
+# print (f"Sigmoid van 10 = {sigmoid(10)}")
 
-print ("Simoid aangeroepen met 1×3 vector [-10, 0, 10]")
-print (sigmoid(np.matrix( [-10, 0, 10] )))
-print ("Simoid aangeroepen met 3×1 vector [-10, 0, 10]")
-print (sigmoid(np.matrix( ([-10], [0], [10]) )))
+# print ("Simoid aangeroepen met 1×3 vector [-10, 0, 10]")
+# print (sigmoid(np.matrix( [-10, 0, 10] )))
+# print ("Simoid aangeroepen met 3×1 vector [-10, 0, 10]")
+# print (sigmoid(np.matrix( ([-10], [0], [10]) )))
 
-input ("Druk op Return om verder te gaan...") 
+# input ("Druk op Return om verder te gaan...") 
 
-# ========================  OPGAVE 2b ======================== 
-print ("")
-print ("Aanroepen van de methode predict_number met de y-vector")
-print ("en het weergeven van de dimensionaliteit van het resultaat")
-matr = get_y_matrix(y, m)
-print (matr.shape)
-print ("Dit zou (5000,10) moeten zijn.")
-input ("Druk op Return om verder te gaan.")
+# # ========================  OPGAVE 2b ======================== 
+# print ("")
+# print ("Aanroepen van de methode predict_number met de y-vector")
+# print ("en het weergeven van de dimensionaliteit van het resultaat")
+# matr = get_y_matrix(y, m)
+# print (matr.shape)
+# print ("Dit zou (5000,10) moeten zijn.")
+# input ("Druk op Return om verder te gaan.")
 
 
 # ========================  OPGAVE 2c ======================== 

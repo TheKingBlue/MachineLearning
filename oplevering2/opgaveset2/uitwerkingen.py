@@ -61,9 +61,10 @@ def predict_number(Theta2, Theta3, X):
 
     # Een mogelijk stappenplan kan zijn:
 
-    #    1. voeg enen toe aan de gegeven matrix X; dit is de input-matrix a1
+    #    1. voeg een kolom van enen toe vooraan de gegeven matrix X; dit is de input-matrix a1
     #    2. roep de sigmoid-functie van hierboven aan met a1 als actuele
-    #       parameter: dit is de variabele a2
+    #       parameter: Let op: a1 is de activatie van de eerste laag, dus het dotproduct van
+    #       de input-vector met de betreffende Theta-matrix. dit is de variabele a2
     #    3. voeg enen toe aan de matrix a2, dit is de input voor de laatste
     #       laag in het netwerk
     #    4. roep de sigmoid-functie aan op deze a2; dit is het uiteindelijke
@@ -72,7 +73,15 @@ def predict_number(Theta2, Theta3, X):
     # Voeg enen toe aan het begin van elke stap en reshape de uiteindelijke
     # vector zodat deze dezelfde dimensionaliteit heeft als y in de exercise.
 
-    pass
+    a1 = np.hstack((np.ones((5000, 1)), X))
+    z2 = np.dot(a1, Theta2.T)
+    o2 = sigmoid(z2)
+    a2 = np.hstack((np.ones((5000, 1)), o2))
+    z3 = np.dot(a2, Theta3.T)
+    a3 = sigmoid(z3)
+    return a3
+
+
 
 
 
