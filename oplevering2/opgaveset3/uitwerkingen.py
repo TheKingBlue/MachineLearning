@@ -35,14 +35,29 @@ def build_model():
     # Maak een model met een input-laag, een volledig verbonden verborgen laag en een softmax
     # output-laag. Compileer het netwerk vervolgens met de gegevens die in opgave gegeven zijn
     # en retourneer het resultaat.
-
     # Het staat je natuurlijk vrij om met andere settings en architecturen te experimenteren.
 
+    # Make model
     model = keras.Sequential()
+
+    # Flatten converts a n-dimensional tensor into a 1D tensor, 
+    # in this case if Input is used, Flatten should be used after to make a 1D tensor:
+    # model.add(keras.Input(shape=(28,28)))
+    # model.add(keras.layers.Flatten())
     model.add(keras.layers.Flatten(input_shape=(28,28)))
+    
+    # relu applies the rectified linear unit activation function 
+    # returns element wise the max of (x, 0)
     model.add(keras.layers.Dense(128, activation='relu'))
+    
+    # softmax converts a vector of values to a probability distribution [0,1]
     model.add(keras.layers.Dense(10, activation='softmax'))
+
+    # adam is a gradient descent method
+    # sparse_categorical_crossentropy computes loss between labels and predictions, used when there are more than two labels (which are integers)
+    # accuracy calculates how often predictions equal labels
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    
     model.summary()
     return model
 
@@ -51,5 +66,4 @@ def save_model(model):
     # het exercise-script wordt getraind, en slaat het op op een locatie op je lokale
     # computer.
 
-    # YOUR CODE HERE
     model.save("model.keras.deel2")
