@@ -38,10 +38,12 @@ def build_model():
 
     # Het staat je natuurlijk vrij om met andere settings en architecturen te experimenteren.
 
-    model = []
-    
-    # YOUR CODE HERE
-
+    model = keras.Sequential()
+    model.add(keras.layers.Flatten(input_shape=(28,28)))
+    model.add(keras.layers.Dense(128, activation='relu'))
+    model.add(keras.layers.Dense(10, activation='softmax'))
+    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    model.summary()
     return model
 
 def save_model(model):
@@ -50,4 +52,4 @@ def save_model(model):
     # computer.
 
     # YOUR CODE HERE
-    pass
+    model.save("model.keras.deel2")
