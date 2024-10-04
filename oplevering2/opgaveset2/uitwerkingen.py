@@ -81,10 +81,6 @@ def predict_number(Theta2, Theta3, X):
     a3 = sigmoid(z3)
     return a3
 
-
-
-
-
 # ===== deel 2: =====
 def compute_cost(Theta2, Theta3, X, y):
     # Deze methode maakt gebruik van de methode predictNumber() die je hierboven hebt
@@ -96,9 +92,8 @@ def compute_cost(Theta2, Theta3, X, y):
     # Maak gebruik van de methode get_y_matrix() die je in opgave 2a hebt gemaakt
     # om deze om te zetten naar een ijle matrix. 
 
-    pass
-
-
+    y_matrix = get_y_matrix(y)
+    
 
 # ==== OPGAVE 3a ====
 def sigmoid_gradient(z): 
