@@ -119,11 +119,20 @@ def nn_check_gradients(Theta2, Theta3, X, y):
 
     Delta2 = np.zeros(Theta2.shape)
     Delta3 = np.zeros(Theta3.shape)
-    m = 1 # voorbeeldwaarde; dit moet je natuurlijk aanpassen naar de echte waarde van m
+    m,n = y.shape
+
+    a1 = np.hstack((np.ones((5000, 1)), X))
+    z2 = np.dot(a1, Theta2.T)
+    o2 = sigmoid(z2)
+    a2 = np.hstack((np.ones((5000, 1)), o2))
+    z3 = np.dot(a2, Theta3.T)
+    a3 = sigmoid(z3)
 
     for i in range(m): 
-        #YOUR CODE HERE
-        pass
+        D3 = a3[i] - y[i]
+        D2 = np.dot(Theta2.T, D3) * sigmoid_gradient(z2) 
+        Delta2 += Delta2 + np.dot(D2, a1.T)
+        Delta3 += Delta3 + np.dot(D3, a2.T)
 
     Delta2_grad = Delta2 / m
     Delta3_grad = Delta3 / m
