@@ -91,8 +91,16 @@ def compute_cost(Theta2, Theta3, X, y):
     # Let op: de y die hier binnenkomt is de m×1-vector met waarden van 1...10. 
     # Maak gebruik van de methode get_y_matrix() die je in opgave 2a hebt gemaakt
     # om deze om te zetten naar een ijle matrix. 
-
-    y_matrix = get_y_matrix(y)
+    
+    # Call the necessary functions
+    m,n = X.shape
+    y_matrix = get_y_matrix(y, m)
+    pred = predict_number(Theta2, Theta3, X)
+    
+    # We need -y
+    K = -1*y_matrix * np.log(pred) - (1-y_matrix)*np.log(1-pred)
+    J = 1/m * np.sum(np.sum(K))
+    return J
     
 
 # ==== OPGAVE 3a ====
