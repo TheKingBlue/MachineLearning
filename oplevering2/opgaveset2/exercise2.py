@@ -120,12 +120,12 @@ Theta3 = initialize_random_weights(hidden_layer_size, num_labels)
 # input ("Druk op Return om verder te gaan.")
 
 # ========================  OPGAVE 3 ======================== 
-print ("")
-print ("Aanroepen van de methode sigmoid_gradient met de waarden [-1, -0.5, 0, 0.5, 1 ]")
-print (sigmoid_gradient(np.array([ [-1, -0.5, 0, 0.5, 1 ] ])))
-print ("Dit zou als resultaat de volgende lijst moeten hebben")
-print ("[ 0.19661193  0.23500371  0.25  0.23500371  0.19661193]")
-input ("Druk op Return om verder te gaan...")
+# print ("")
+# print ("Aanroepen van de methode sigmoid_gradient met de waarden [-1, -0.5, 0, 0.5, 1 ]")
+# print (sigmoid_gradient(np.array([ [-1, -0.5, 0, 0.5, 1 ] ])))
+# print ("Dit zou als resultaat de volgende lijst moeten hebben")
+# print ("[ 0.19661193  0.23500371  0.25  0.23500371  0.19661193]")
+# input ("Druk op Return om verder te gaan...")
 
 print ("")
 print ("Aanroepen van de methode nn_check_gradients met initiële waarden van de Theta's.")
@@ -136,27 +136,27 @@ input ("Druk op Return om verder te gaan...")
 
 # ========================  OPGAVE 4 ======================== 
 
-init_params = np.concatenate( (Theta2.flatten(), Theta3.flatten()) )
-args = (X, y)
-print ("")
-print ("Gebruik scipy.optimize.minimize om het netwerk te trainen...")
-res = minimize(nn_cost_function, init_params, args=args, method='CG', callback=callbackF, jac=True, options={'maxiter':30,'disp':True})
-size = hidden_layer_size * (input_layer_size+1) #voor de bias-node die wel in de matrix zit maar niet geplot moet worden
-res_Theta2 = res['x'][:size].reshape(hidden_layer_size, input_layer_size+1)
-res_Theta3 = res['x'][size:].reshape(num_labels, hidden_layer_size+1)
+# init_params = np.concatenate( (Theta2.flatten(), Theta3.flatten()) )
+# args = (X, y)
+# print ("")
+# print ("Gebruik scipy.optimize.minimize om het netwerk te trainen...")
+# res = minimize(nn_cost_function, init_params, args=args, method='CG', callback=callbackF, jac=True, options={'maxiter':30,'disp':True})
+# size = hidden_layer_size * (input_layer_size+1) #voor de bias-node die wel in de matrix zit maar niet geplot moet worden
+# res_Theta2 = res['x'][:size].reshape(hidden_layer_size, input_layer_size+1)
+# res_Theta3 = res['x'][size:].reshape(num_labels, hidden_layer_size+1)
 
-print ("Training compleet. ")
+# print ("Training compleet. ")
 
-cost = compute_cost(res_Theta2, res_Theta3, X, y) 
-print (f"De kosten die gemoeid zijn met de huidige waarden van Theta2 en Theta3 zijn {cost}")
-print ("Dit zou een stuk lager moeten zijn dan in het begin.")
+# cost = compute_cost(res_Theta2, res_Theta3, X, y) 
+# print (f"De kosten die gemoeid zijn met de huidige waarden van Theta2 en Theta3 zijn {cost}")
+# print ("Dit zou een stuk lager moeten zijn dan in het begin.")
 
-pred = np.argmax(predict_number(res_Theta2,res_Theta3,X), axis=1)+1
-pred = pred.reshape(m,1)
-acc = np.count_nonzero([pred - y == 0])
-print (f"correct geclassificeerd: {acc}")
-print (f"De huidige accuratessse van het netwerk is {100 * acc/ m} %")
-print ("Dat zou een stuk hoger moeten zijn dan in het begin.")
-print ("Plotten van de waarden van de gewichten in de verborgen laag (hidden layer)")
+# pred = np.argmax(predict_number(res_Theta2,res_Theta3,X), axis=1)+1
+# pred = pred.reshape(m,1)
+# acc = np.count_nonzero([pred - y == 0])
+# print (f"correct geclassificeerd: {acc}")
+# print (f"De huidige accuratessse van het netwerk is {100 * acc/ m} %")
+# print ("Dat zou een stuk hoger moeten zijn dan in het begin.")
+# print ("Plotten van de waarden van de gewichten in de verborgen laag (hidden layer)")
 
-display_data(res_Theta2[:,1:]) 
+# display_data(res_Theta2[:,1:]) 
