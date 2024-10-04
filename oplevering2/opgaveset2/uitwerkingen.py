@@ -97,11 +97,10 @@ def compute_cost(Theta2, Theta3, X, y):
     y_matrix = get_y_matrix(y, m)
     pred = predict_number(Theta2, Theta3, X)
     
-    # We need -y
+    # Cost function
     K = -1*y_matrix * np.log(pred) - (1-y_matrix)*np.log(1-pred)
-    J = 1/m * np.sum(np.sum(K))
+    J = 1/m * np.sum(np.sum(K)) # First sum K, each node into a cost per node. Then sum the outcome to sum all nodes into one total cost.
     return J
-    
 
 # ==== OPGAVE 3a ====
 def sigmoid_gradient(z): 
