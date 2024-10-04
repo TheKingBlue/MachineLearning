@@ -108,7 +108,9 @@ def sigmoid_gradient(z):
     # Zie de opgave voor de exacte formule. Controleer dat deze werkt met
     # scalaire waarden en met vectoren.
 
-    pass
+    g = sigmoid(z)
+    sigmoid_grad = g * (1-g)
+    return sigmoid_grad[0]
 
 # ==== OPGAVE 3b ====
 def nn_check_gradients(Theta2, Theta3, X, y): 
