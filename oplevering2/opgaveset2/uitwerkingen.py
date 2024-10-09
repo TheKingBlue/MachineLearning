@@ -130,15 +130,17 @@ def nn_check_gradients(Theta2, Theta3, X, y):
     z3 = np.dot(a2, Theta3.T)
     a3 = sigmoid(z3)
 
-    for i in range(m):
+    for k in range(m):
         # Outer layer
-        delta3 = a3[i] - y_vec[i]
+        delta3 = a3[k] - y_vec[k]
         # Hidden layer
         # delta2 = np.dot(Theta2.T, delta3) * sigmoid_gradient(z2) -> "shapes (401,25) and (10,) not aligned"
-        delta2 = np.dot(Theta3.T[i], delta3) * sigmoid_gradient(z2)
+        # delta2 = np.dot(Theta2[k].T, delta3) * sigmoid_gradient(z2) -> "shapes (401,) and (10,) not aligned"
+        # delta2 = np.dot(Theta3[k].T, delta3) * sigmoid_gradient(z2) -> "Shapes (26,) and (10,) not aligned"
+        delta2 = np.dot(Theta3.T[k], delta3) * sigmoid_gradient(z2) # -> 26 is out of range
         # Update martices Delta2 & Delta3
-        Delta2 = Delta2 + np.dot(delta2, a2[i][1:]) # Ignore the first node
-        Delta3 = Delta3 + np.dot(delta3, a3[i])
+        Delta2 = Delta2 + np.dot(delta2, a2[k][1:]) # Ignore the first node
+        Delta3 = Delta3 + np.dot(delta3, a3[k])
 
     Delta2_grad = Delta2 / m
     Delta3_grad = Delta3 / m

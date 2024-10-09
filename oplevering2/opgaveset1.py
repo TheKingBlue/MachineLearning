@@ -10,6 +10,7 @@ for i in range(len(target)):
         target[i] = 0
     if target[i] == 2:
         target[i] = 1
+        
 
 # Transform target into a properly shaped y
 y = np.expand_dims(target, axis=1)
@@ -43,3 +44,7 @@ for _ in range(iterations):
     costs.append(cost(y, s, m))
 
 print(f"Eerste berekening van de kosten was {costs[0]}, de laatste berekening van de kosten was {costs[-1]}")
+
+import matplotlib.pyplot as plt
+plt.plot(costs)
+plt.show()
