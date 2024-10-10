@@ -7,8 +7,8 @@ def load_model():
     # Deze methode laadt het getrainde model dat je bij de vorige opgavenset heb
     # opgeslagen. 
 
-    # YOUR CODE HERE
-    pass
+    model = tf.keras.models.load_model('model.keras.deel2')
+    return model
 
 # OPGAVE 1a
 def conf_matrix(labels, pred):
@@ -16,8 +16,8 @@ def conf_matrix(labels, pred):
     # waarden (labels). Check de documentatie van tf.math.confusion_matrix:
     # https://www.tensorflow.org/api_docs/python/tf/math/confusion_matrix
     
-    # YOUR CODE HERE
-    pass
+    confusius_matrix = tf.math.confusion_matrix(labels,pred)
+    return confusius_matrix
     
 
 # OPGAVE 1b
@@ -32,9 +32,24 @@ def conf_els(conf, labels):
  
     # Check de documentatie van numpy diagonal om de eerste waarde te bepalen.
     # https://numpy.org/doc/stable/reference/generated/numpy.diagonal.html
- 
-    # YOUR CODE HERE
-    pass
+    x = list()
+    # tpi = Cii
+    tp = [conf[i][i] for i in range(len(labels))]
+
+    # fpi = (som van Cli) - tpi
+    fp = [np.sum(conf[:, i])- tp[i] for i in range(len(labels))]
+
+    # (som van Cil) - tpi 
+    fn = [np.sum(conf[i, :]) - tp[i] for i in range(len(labels))]
+
+    # (som van Clk) - 
+    tn = [np.sum(conf) - tp[i] - fp[i] - fn[i] for i in range(len(labels))]
+
+    c = list(zip(labels, tp, fp, fn, tn))
+    formatted_data = [f"Category: {label}, tp: {tp}, fp: {fp}, fn: {fn}, tn: {tn}" for label, tp, fp, fn, tn in c]
+
+    return formatted_data
+    
 
 # OPGAVE 1c
 def conf_data(metrics):
