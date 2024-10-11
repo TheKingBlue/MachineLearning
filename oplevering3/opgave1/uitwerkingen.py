@@ -7,7 +7,7 @@ def load_model():
     # Deze methode laadt het getrainde model dat je bij de vorige opgavenset heb
     # opgeslagen. 
 
-    model = tf.keras.models.load_model('model.keras.deel2')
+    model = tf.keras.models.load_model('model-deel2.keras')
     return model
 
 # OPGAVE 1a
@@ -46,9 +46,9 @@ def conf_els(conf, labels):
     tn = [np.sum(conf) - tp[i] - fp[i] - fn[i] for i in range(len(labels))]
 
     c = list(zip(labels, tp, fp, fn, tn))
-    formatted_data = [f"Category: {label}, tp: {tp}, fp: {fp}, fn: {fn}, tn: {tn}" for label, tp, fp, fn, tn in c]
+    # formatted_data = [f"Category: {label}, tp: {tp}, fp: {fp}, fn: {fn}, tn: {tn})" for label, tp, fp, fn, tn in c]
 
-    return formatted_data
+    return c
     
 
 # OPGAVE 1c
@@ -58,15 +58,17 @@ def conf_data(metrics):
     # bepaal vervolgens de metrieken die in de opgave genoemd zijn. Retourneer deze waarden in de
     # vorm van een dictionary (de scaffold hiervan is gegeven).
 
-    # VERVANG ONDERSTAANDE REGELS MET JE EIGEN CODE
-    
-    tp = 1
-    fp = 1
-    fn = 1
-    tn = 1
+    labels, tp, fp, fn, tn = zip(*metrics)
 
-    # BEREKEN HIERONDER DE JUISTE METRIEKEN EN RETOURNEER DIE 
-    # ALS EEN DICTIONARY
+    tp = np.sum(tp)
+    fp = np.sum(fp)
+    fn = np.sum(fn)
+    tn = np.sum(tn)
+    print(fn, fp)
+    tpr = np.round(np.divide(tp, tp+fn), decimals=4)
+    ppv = np.round(np.divide(tp, tp+fp), decimals=4)
+    tnr = np.round(np.divide(tn, tn+fp), decimals=4)
+    fpr = np.round(np.divide(fp, fp+tn), decimals=4)
 
-    rv = {'tpr':0, 'ppv':0, 'tnr':0, 'fpr':0 }
+    rv = {'tpr':tpr, 'ppv':ppv, 'tnr':tnr, 'fpr':fpr}
     return rv

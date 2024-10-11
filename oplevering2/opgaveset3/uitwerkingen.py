@@ -66,4 +66,4 @@ def save_model(model):
     # het exercise-script wordt getraind, en slaat het op op een locatie op je lokale
     # computer.
 
-    model.save("model.keras.deel2")
+    model.save("model-deel2.keras")
